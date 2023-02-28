@@ -14,11 +14,6 @@ inquirer
       type: 'input',
     },
     {
-      name: 'table',
-      message: 'Table of Contents',
-      type: 'input',
-    },
-    {
       name: 'installation',
       message: 'Installation',
       type: 'input',
@@ -76,9 +71,32 @@ inquirer
     },
   ])
   .then((response) => {
-    const { title, description, table, installation, usage, license, contributing, tests, questions, email, github } = response;
-    console.log(response);
-    const data = `${title}${description}${table}${installation}${usage}${license}${contributing}${tests}${questions}${email}${github}`;
-    const fileName = `${title.toLowerCase()}.md`;
+    const { title, description, installation, usage, license, contributing, tests, questions, email, github } = response;
+    const data = `
+    # ${title}
+    ## ${description}
+    ## Table of Content
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [License](#license)
+    - [Contributing](#contributing)
+    - [Tests](#tests)
+    - [Questions](#questions)
+    ## Installation
+    ${installation}
+    ## Usage
+    ${usage}
+    ## License
+    ${license}
+    ## Contributing
+    ${contributing}
+    ## Tests
+    ${tests}
+    ## Questions
+    ${questions}
+    GitHub profile - https://github.com/${github}
+    For more information contact me at ${email}.
+    `;
+    const fileName = `${title.toLowerCase().split(' ').join('')}_ReadMe.md`;
     fs.writeFile(fileName, data, (err) => (err ? console.log(err) : console.log('Success!')));
   });
