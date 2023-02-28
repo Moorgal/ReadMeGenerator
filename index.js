@@ -73,30 +73,30 @@ inquirer
   .then((response) => {
     const { title, description, installation, usage, license, contributing, tests, questions, email, github } = response;
     const data = `
-    # ${title}
-    ## ${description}
-    ## Table of Content
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [License](#license)
-    - [Contributing](#contributing)
-    - [Tests](#tests)
-    - [Questions](#questions)
-    ## Installation
-    ${installation}
-    ## Usage
-    ${usage}
-    ## License
-    ${license}
-    ## Contributing
-    ${contributing}
-    ## Tests
-    ${tests}
-    ## Questions
-    ${questions}
-    GitHub profile - https://github.com/${github}
-    For more information contact me at ${email}.
-    `;
+# ${title}
+## ${description}
+## Table of Content
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+## Installation
+${installation}
+## Usage
+${usage}
+## License
+${license}
+## Contributing
+${contributing}
+## Tests
+${tests}
+## Questions
+${questions}
+GitHub profile - https://github.com/${github}
+For more information contact me at ${email}.
+`;
     const fileName = `${title.toLowerCase().split(' ').join('')}_ReadMe.md`;
     fs.writeFile(fileName, data, (err) => (err ? console.log(err) : console.log('Success!')));
   });
