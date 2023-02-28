@@ -1,4 +1,5 @@
 import inquirer from 'inquirer';
+import fs from 'fs';
 
 inquirer
   .prompt([
@@ -63,7 +64,21 @@ inquirer
       message: 'Questions',
       type: 'input',
     },
+    {
+      name: 'email',
+      message: 'What is your e-mail',
+      type: 'input',
+    },
+    {
+      name: 'github',
+      message: 'What is your github name',
+      type: 'input',
+    },
   ])
   .then((response) => {
+    const { title, description, table, installation, usage, license, contributing, tests, questions, email, github } = response;
     console.log(response);
+    const data = `${title}${description}${table}${installation}${usage}${license}${contributing}${tests}${questions}${email}${github}`;
+    const fileName = `${title.toLowerCase()}.md`;
+    fs.writeFile(fileName, data, (err) => (err ? console.log(err) : console.log('Success!')));
   });
